@@ -208,8 +208,9 @@ const View = () => {
                     <Label htmlFor="categories">Catégories</Label>
                     <SelectCustom
                       options={catsSelect}
-                      inputId="categories"
+                      sortable
                       name="categories"
+                      classNamePrefix="action-view-categories"
                       onChange={(v) => handleChange({ currentTarget: { value: v, name: 'categories' } })}
                       isClearable={false}
                       isMulti
