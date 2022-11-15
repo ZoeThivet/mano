@@ -7,7 +7,7 @@ test.beforeAll(async () => {
   await populate();
 });
 
-test("Actions", async ({ page }) => {
+test("Actions grouped categories", async ({ page }) => {
   // Always use a new items
   const group1Name = nanoid();
   const groupe1cat1 = nanoid();

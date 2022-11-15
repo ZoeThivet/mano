@@ -7,8 +7,13 @@ import { changeReactSelectValue, clickOnEmptyReactSelect } from "./utils";
 
 dayjs.extend(utc);
 dayjs.locale("fr");
+import { populate } from "./scripts/populate-db";
 
-test("Cross teams report", async ({ page }) => {
+test.beforeAll(async () => {
+  await populate();
+});
+
+test("Person creation on both list and select", async ({ page }) => {
   // Always use a new items
   const person1Name = nanoid();
   const person2Name = nanoid();
@@ -65,25 +70,15 @@ test("Cross teams report", async ({ page }) => {
   await test.step("Persons created should appear in report", async () => {
     await page.getByRole("link", { name: "Comptes rendus" }).click();
 
-    await expect(
-      page.locator(`data-test-id=report-dot-${dayjs().format("YYYY-MM-DD")}`)
-    ).toBeVisible();
+    await expect(page.locator(`data-test-id=report-dot-${dayjs().format("YYYY-MM-DD")}`)).toBeVisible();
     await page.getByRole("button", { name: dayjs().format("YYYY-MM-DD") }).click();
 
     await page.getByText("Personnes créées (2)").click();
     await expect(page.locator(`data-test-id=${person1Name}`)).toBeVisible();
-    await expect(
-      page.locator(`data-test-id=${person1Name}`).getByRole("cell", { name: "User Test - 5" })
-    ).toBeVisible();
-    await expect(
-      page.locator(`data-test-id=${person1Name}`).getByRole("cell", { name: "Team Test - 5" })
-    ).toBeVisible();
+    await expect(page.locator(`data-test-id=${person1Name}`).getByRole("cell", { name: "User Test - 5" })).toBeVisible();
+    await expect(page.locator(`data-test-id=${person1Name}`).getByRole("cell", { name: "Team Test - 5" })).toBeVisible();
     await expect(page.locator(`data-test-id=${person2Name}`)).toBeVisible();
-    await expect(
-      page.locator(`data-test-id=${person2Name}`).getByRole("cell", { name: "User Test - 5" })
-    ).toBeVisible();
-    await expect(
-      page.locator(`data-test-id=${person2Name}`).getByRole("cell", { name: "Team Test - 5" })
-    ).toBeVisible();
+    await expect(page.locator(`data-test-id=${person2Name}`).getByRole("cell", { name: "User Test - 5" })).toBeVisible();
+    await expect(page.locator(`data-test-id=${person2Name}`).getByRole("cell", { name: "Team Test - 5" })).toBeVisible();
   });
 });
