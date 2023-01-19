@@ -44,12 +44,6 @@ const PersonStats = ({
         help={`Genre des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
       />
       <CustomResponsivePie
-        title="Situation personnelle"
-        field="personalSituation"
-        data={getPieData(personsForStats, 'personalSituation', { options: personFields.find((f) => f.name === 'personalSituation').options })}
-        help={`Situation personnelle des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
-      />
-      <CustomResponsivePie
         title="Motif de la situation de rue"
         field="reasons"
         data={getPieData(personsForStats, 'reasons', { options: personFields.find((f) => f.name === 'reasons').options })}
