@@ -30,49 +30,19 @@ const PersonStats = ({
         <BlockGroup groups={groupsForPersons(personsForStats)} title={`Nombre de familles dans lesquelles se trouvent des ${title}`} />
       </div>
       <CustomResponsivePie
-        title="Nationalité"
-        field="nationalitySituation"
-        data={getPieData(personsForStats, 'nationalitySituation', {
-          options: personFields.find((f) => f.name === 'nationalitySituation').options,
-        })}
-        help={`Nationalité des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
-      />
-      <CustomResponsivePie
         title="Genre"
         field="gender"
         data={getPieData(personsForStats, 'gender', { options: personFields.find((f) => f.name === 'gender').options })}
         help={`Genre des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
       />
-      <CustomResponsivePie
-        title="Motif de la situation de rue"
-        field="reasons"
-        data={getPieData(personsForStats, 'reasons', { options: personFields.find((f) => f.name === 'reasons').options })}
-        help={`Motif de la situation de rue des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
-      />
-      <CustomResponsivePie
-        title="Ressources"
-        field="resources"
-        data={getPieData(personsForStats, 'resources', { options: personFields.find((f) => f.name === 'resources').options })}
-        help={`Ressources des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
-      />
       <AgeRangeBar persons={personsForStats} />
       <StatsCreatedAtRangeBar persons={personsForStats} />
       <StatsWanderingAtRangeBar persons={personsForStats} />
-      <CustomResponsivePie
-        title="Type d'hébergement"
-        data={getAdressPieData(personsForStats)}
-        help={`Type d'hébergement des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
-      />
       <CustomResponsivePie
         title="Couverture médicale des personnes"
         field="healthInsurances"
         data={getPieData(personsForStats, 'healthInsurances', { options: personFields.find((f) => f.name === 'healthInsurances').options })}
         help={`Couverture médicale des ${title} dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
-      />
-      <CustomResponsivePie
-        title="Avec animaux"
-        data={getPieData(personsForStats, 'hasAnimal')}
-        help={`Répartition des ${title} avec animaux dans la période définie.\n\nSi aucune période n'est définie, on considère l'ensemble des personnes.`}
       />
       <CustomResponsivePie
         title="Personnes très vulnérables"
